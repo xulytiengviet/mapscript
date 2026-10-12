@@ -120,7 +120,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
  maxZoom:19,attribution:'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" title="© OpenStreetMap contributors">&copy; OpenStreetMap</a>'
 }).addTo(map);
 // Replace only Leaflet's attribution prefix; preserve OSM contributor credit.
-map.attributionControl.setPrefix('<span role="img" aria-label="Cờ Việt Nam" title="Việt Nam">🇻🇳</span>');
+map.attributionControl.setPrefix('<img src="assets/vietnam-flag.svg" alt="Cờ Việt Nam" title="Việt Nam" width="24" height="16" style="width:24px;height:16px;object-fit:cover;vertical-align:middle">');
 // Vietflex identifies this atlas application, not the source of OSM tiles.
 const geographicLabels=L.layerGroup().addTo(map);
 map.createPane('geographicLabels');
