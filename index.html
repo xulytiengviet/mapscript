@@ -117,10 +117,10 @@ const state={mode:'all',year:2026,selected:'nom',playing:false,timer:null};
 // Exactly one Leaflet map. OSM is credited as the basemap data provider.
 const map=L.map('map',{zoomControl:false,attributionControl:true,preferCanvas:false}).setView([19,109],4);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
- maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
+ maxZoom:19,attribution:'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" title="© OpenStreetMap contributors">&copy; OpenStreetMap</a>'
 }).addTo(map);
 // Replace only Leaflet's attribution prefix; preserve OSM contributor credit.
-map.attributionControl.setPrefix('');
+map.attributionControl.setPrefix('<span role="img" aria-label="Cờ Việt Nam" title="Việt Nam">🇻🇳</span>');
 // Vietflex identifies this atlas application, not the source of OSM tiles.
 const geographicLabels=L.layerGroup().addTo(map);
 map.createPane('geographicLabels');
