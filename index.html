@@ -119,7 +119,7 @@ if(map.attributionControl && map.attributionControl.setPrefix) map.attributionCo
 map.createPane('routes');map.getPane('routes').style.zIndex='430';map.getPane('routes').style.pointerEvents='none';
 map.createPane('endpoints');map.getPane('endpoints').style.zIndex='440';map.getPane('endpoints').style.pointerEvents='none';
 map.createPane('symbols');map.getPane('symbols').style.zIndex='630';
-const lineLayer=L.layerGroup().addTo(map),endLayer=L.layerGroup().addTo(map),pointLayer=L.layerGroup().addTo(map);
+const lineLayer=new Vietflex.LayerGroup().addTo(map),endLayer=new Vietflex.LayerGroup().addTo(map),pointLayer=new Vietflex.LayerGroup().addTo(map);
 const nodeMarkers=new Map();
 function ancestors(id){let out=new Set(),p=dict[id];while(p&&!out.has(p[0])){out.add(p[0]);p=dict[p[7]]}return out}
 function visible(n){return state.mode==='all'||(state.mode==='history'?n[5]<=state.year:ancestors(state.selected).has(n[0]))}
@@ -135,15 +135,15 @@ function render(){
  pointLayer.clearLayers();lineLayer.clearLayers();endLayer.clearLayers();nodeMarkers.clear();
  const zoom=map.getZoom(),chain=ancestors(state.selected);
  for(const n of es){const a=dict[n[7]],coords=geometry(a,n),active=chain.has(n[0])&&chain.has(a[0]),c=colors[n[6]];
- if(el('lines').checked){const route=L.polyline(coords,{pane:'routes',color:c,opacity:active?.94:.65,weight:active?4:2.4,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'5 7':null,interactive:false}).addTo(lineLayer);
- for(const p of [a,n])L.circleMarker([p[3],p[4]],{pane:'endpoints',radius:4,weight:1,color:'#fff',fillColor:c,fillOpacity:1,interactive:false}).addTo(endLayer);
+ if(el('lines').checked){const route=new Vietflex.Polyline(coords,{pane:'routes',color:c,opacity:active?.94:.65,weight:active?4:2.4,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'5 7':null,interactive:false}).addTo(lineLayer);
+ for(const p of [a,n])new Vietflex.CircleMarker([p[3],p[4]],{pane:'endpoints',radius:4,weight:1,color:'#fff',fillColor:c,fillOpacity:1,interactive:false}).addTo(endLayer);
  if(el('arrows').checked){const p=map.latLngToLayerPoint(coords[14]),q=map.latLngToLayerPoint(coords[16]),angle=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
- L.marker(coords[15],{pane:'endpoints',interactive:false,icon:L.divIcon({className:'routeArrow',html:'<span style="--c:'+c+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(endLayer)}
+ new Vietflex.Marker(coords[15],{pane:'endpoints',interactive:false,icon:new Vietflex.DivIcon({className:'routeArrow',html:'<span style="--c:'+c+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(endLayer)}
  }}
  for(const n of ns){const chosen=n[0]===state.selected,showLabel=el('labels').checked&&(zoom>=5||chosen);const label=n[1].split(' ·')[0];
  const content='<div class="node '+(chosen?'selected':'')+'" style="--c:'+colors[n[6]]+'"><span class="symbol">'+n[2]+'</span>'+(showLabel?'<small>'+label+'</small>':'')+'</div>';
- const width=showLabel?136:40,icon=L.divIcon({className:'pointIcon',html:content,iconSize:[width,32],iconAnchor:[width/2,16]});
- const marker=L.marker([n[3],n[4]],{pane:'symbols',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(pointLayer);marker.on('click',()=>selectNode(n[0]));marker.bindTooltip(n[1]);nodeMarkers.set(n[0],marker);
+ const width=showLabel?136:40,icon=new Vietflex.DivIcon({className:'pointIcon',html:content,iconSize:[width,32],iconAnchor:[width/2,16]});
+ const marker=new Vietflex.Marker([n[3],n[4]],{pane:'symbols',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(pointLayer);marker.on('click',()=>selectNode(n[0]));marker.bindTooltip(n[1]);nodeMarkers.set(n[0],marker);
  }
  el('when').textContent=fmt(state.year);el('year').value=state.year;
  el('stats').textContent=ns.length+'/'+raw.length+' điểm · '+es.length+' tuyến';
@@ -154,7 +154,7 @@ function render(){
  const x=(state.year+1300)/3326*100;el('cursor').style.left=x+'%';
  el('status').dataset.rendered='yes';
 }
-function fit(){const ns=nodes();if(ns.length===1)map.setView([ns[0][3],ns[0][4]],6);else if(ns.length)map.fitBounds(L.latLngBounds(ns.map(n=>[n[3],n[4]])).pad(.14),{maxZoom:6,animate:false})}
+function fit(){const ns=nodes();if(ns.length===1)map.setView([ns[0][3],ns[0][4]],6);else if(ns.length)map.fitBounds(new Vietflex.LatLngBounds(ns.map(n=>[n[3],n[4]])).pad(.14),{maxZoom:6,animate:false})}
 function setMode(mode){pause();state.mode=mode;render();fit()}
 function pause(){if(state.timer)clearInterval(state.timer);state.timer=null;state.playing=false;el('play').textContent='▶'}
 function changeYear(y){state.year=Math.max(-1300,Math.min(2026,+y));render()}
