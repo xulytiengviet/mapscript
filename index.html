@@ -119,6 +119,8 @@ const map=L.map('map',{zoomControl:false,attributionControl:true,preferCanvas:fa
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
  maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
 }).addTo(map);
+// Replace only Leaflet's attribution prefix; preserve OSM contributor credit.
+map.attributionControl.setPrefix('<span role="img" aria-label="Cờ Việt Nam" title="Việt Nam">🇻🇳</span>');
 // Vietflex identifies this atlas application, not the source of OSM tiles.
 const geographicLabels=L.layerGroup().addTo(map);
 map.createPane('geographicLabels');
