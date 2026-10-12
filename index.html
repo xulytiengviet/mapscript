@@ -3,7 +3,7 @@
 <title>MapScript · Atlas tiến hóa chữ viết | Long Ngo</title>
 <meta name="description" content="Atlas tương tác về lịch sử và các quan hệ chữ viết Á Đông, Long Ngo, MIT 2026">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Vietflexmap/VN@6144d565fcf236727577ab3c4471bbe49f86892f/dist/vietflex.css">
+
 <style>:root{--ink:#1b2a3b;--muted:#66788b;--line:#dbe4eb;--sea:#eaf3f7;--accent:#087f91}
 *{box-sizing:border-box}html,body{margin:0;height:100%;font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#f5f8fb}
 button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #31abca;outline-offset:2px}
@@ -38,7 +38,10 @@ button:hover{background:#eaf5f8}.active{background:#d7f0f3!important;border-colo
 .event:hover,.event.active{background:#dceff4!important}
 #cursor{position:absolute;top:0;bottom:0;width:2px;background:#10849a;z-index:2;pointer-events:none}
 #cursor:before{content:"";position:absolute;top:0;left:-5px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #10849a}
-#status{font-size:11px;color:var(--muted)}.pointIcon{border:0;background:transparent}
+#status{font-size:11px;color:var(--muted)}
+.geographic-label{background:transparent;border:0}
+.vietflex-sea-label,.vietflex-island-label{display:block;text-align:center;color:#155b82;font-weight:750;text-shadow:0 1px 2px white,1px 0 2px white,-1px 0 2px white;white-space:nowrap;font-size:12px}
+.vietflex-sea-label{font-size:18px;letter-spacing:.1em;color:#16708f}.pointIcon{border:0;background:transparent}
 .node{background:white;border:2px solid var(--c);border-radius:18px;padding:3px 6px;box-shadow:0 2px 8px #0004;white-space:nowrap;display:flex;align-items:center;gap:4px;width:max-content;max-width:154px;font-weight:650}
 .node.selected{box-shadow:0 0 0 4px #ecbd37,0 2px 8px #0004}.node .symbol{font-size:17px}.node small{font-size:11px;overflow:hidden;text-overflow:ellipsis;max-width:105px}
 .routeArrow{border:0;background:transparent}.routeArrow span{font-size:19px;color:var(--c);text-shadow:0 1px 3px white;display:block}
@@ -50,7 +53,7 @@ button:hover{background:#eaf5f8}.active{background:#d7f0f3!important;border-colo
 <div id="layout"><section id="top"><div id="mapWrap"><div id="map" role="application" aria-label="Bản đồ lịch sử chữ viết"></div>
 <div id="mapHeader"><strong id="mapYear">Atlas chữ viết</strong><small id="mapSub">Điểm khởi nguồn và mối quan hệ</small></div>
 <div id="mapTools"><button id="zoomIn" aria-label="Phóng to">＋</button><button id="zoomOut" aria-label="Thu nhỏ">−</button><button id="reset" aria-label="Đặt lại bản đồ">⌖</button></div>
-<div id="legend"><span class="dot" style="background:#e76c46"></span>Hán tự <span class="dot" style="background:#8263d9"></span>Brahmi <span class="dot" style="background:#c94b9d"></span>Sogdian <span class="dot" style="background:#1784be"></span>Latin<br><span id="status">Đang tải dữ liệu...</span></div></div>
+<div id="legend"><strong>Vietflex Atlas</strong> · Long Ngo<br><span class="dot" style="background:#e76c46"></span>Hán tự <span class="dot" style="background:#8263d9"></span>Brahmi <span class="dot" style="background:#c94b9d"></span>Sogdian <span class="dot" style="background:#1784be"></span>Latin<br><span id="status">Đang tải dữ liệu...</span></div></div>
 <aside id="info"><h2>Hồ sơ chữ viết</h2><div class="muted">Chọn điểm trên bản đồ hoặc một sự kiện trên dòng thời gian.</div>
 <input type="search" id="search" placeholder="Tìm chữ viết, ví dụ: Chữ Nôm..." aria-label="Tìm chữ viết"><div id="results"></div>
 <div id="details"></div><h3>Lớp hiển thị</h3>
@@ -63,7 +66,7 @@ button:hover{background:#eaf5f8}.active{background:#d7f0f3!important;border-colo
 <div id="bands"><span>Họ chữ viết</span><div id="bandsTrack"><div class="band" style="background:#e76c46" title="Hán tự"></div><div class="band" style="background:#8263d9" title="Brahmi"></div><div class="band" style="background:#c94b9d" title="Sogdian"></div><div class="band" style="background:#1784be" title="Latin"></div></div></div>
 <div id="events"><div id="eventTrack"><div id="cursor"></div></div></div></section></div>
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/Vietflexmap/VN@6144d565fcf236727577ab3c4471bbe49f86892f/dist/vietflex.js"></script>
+
 <script>
 const raw=[
 ['oracle','Giáp cốt văn · 甲骨文','🇨🇳',36.1,114.3,-1250,'han','','Khắc trên xương và mai rùa cuối thời Thương','gốc'],
@@ -111,15 +114,29 @@ const colors={han:'#e76c46',brahmi:'#8263d9',sogdian:'#c94b9d',latin:'#1784be'};
 const el=id=>document.getElementById(id),fmt=y=>y<0?Math.abs(y)+' TCN':y+' SCN';
 const edges=raw.filter(n=>n[7]&&dict[n[7]]);
 const state={mode:'all',year:2026,selected:'nom',playing:false,timer:null};
-const map=Vietflex.vietflexMap('map',{useLegacyGoogleTiles:true,googleMapType:'roadmap',zoomControl:false,attributionControl:false});
-map.setView([29,105],4);
-new Vietflex.AttributionControl({position:'bottomright'}).addTo(map);
-// The Vietflex provider attribution remains visible; Leaflet's library prefix is hidden.
-if(map.attributionControl && map.attributionControl.setPrefix) map.attributionControl.setPrefix('');
+// Exactly one Leaflet map. OSM is credited as the basemap data provider.
+const map=L.map('map',{zoomControl:false,attributionControl:true,preferCanvas:false}).setView([19,109],4);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+ maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+// Vietflex identifies this atlas application, not the source of OSM tiles.
+const geographicLabels=L.layerGroup().addTo(map);
+map.createPane('geographicLabels');
+map.getPane('geographicLabels').style.zIndex='610';
+map.getPane('geographicLabels').style.pointerEvents='none';
+function addSeaLabel(lat,lng,name,kind){
+ const css=kind==='sea'?'vietflex-sea-label':'vietflex-island-label';
+ L.marker([lat,lng],{pane:'geographicLabels',interactive:false,keyboard:false,
+ icon:L.divIcon({className:'geographic-label',html:'<span class="'+css+'">'+name+'</span>',iconSize:[180,30],iconAnchor:[90,15]})
+ }).addTo(geographicLabels);
+}
+addSeaLabel(14.2,114.9,'Biển Đông','sea');
+addSeaLabel(16.5,112,'Hoàng Sa (Việt Nam)','island');
+addSeaLabel(10,114,'Trường Sa (Việt Nam)','island');
 map.createPane('routes');map.getPane('routes').style.zIndex='430';map.getPane('routes').style.pointerEvents='none';
 map.createPane('endpoints');map.getPane('endpoints').style.zIndex='440';map.getPane('endpoints').style.pointerEvents='none';
 map.createPane('symbols');map.getPane('symbols').style.zIndex='630';
-const lineLayer=new Vietflex.LayerGroup().addTo(map),endLayer=new Vietflex.LayerGroup().addTo(map),pointLayer=new Vietflex.LayerGroup().addTo(map);
+const lineLayer=L.layerGroup().addTo(map),endLayer=L.layerGroup().addTo(map),pointLayer=L.layerGroup().addTo(map);
 const nodeMarkers=new Map();
 function ancestors(id){let out=new Set(),p=dict[id];while(p&&!out.has(p[0])){out.add(p[0]);p=dict[p[7]]}return out}
 function visible(n){return state.mode==='all'||(state.mode==='history'?n[5]<=state.year:ancestors(state.selected).has(n[0]))}
@@ -135,15 +152,15 @@ function render(){
  pointLayer.clearLayers();lineLayer.clearLayers();endLayer.clearLayers();nodeMarkers.clear();
  const zoom=map.getZoom(),chain=ancestors(state.selected);
  for(const n of es){const a=dict[n[7]],coords=geometry(a,n),active=chain.has(n[0])&&chain.has(a[0]),c=colors[n[6]];
- if(el('lines').checked){const route=new Vietflex.Polyline(coords,{pane:'routes',color:c,opacity:active?.94:.65,weight:active?4:2.4,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'5 7':null,interactive:false}).addTo(lineLayer);
- for(const p of [a,n])new Vietflex.CircleMarker([p[3],p[4]],{pane:'endpoints',radius:4,weight:1,color:'#fff',fillColor:c,fillOpacity:1,interactive:false}).addTo(endLayer);
+ if(el('lines').checked){const route=L.polyline(coords,{pane:'routes',color:c,opacity:active?.94:.65,weight:active?4:2.4,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'5 7':null,interactive:false}).addTo(lineLayer);
+ for(const p of [a,n])L.circleMarker([p[3],p[4]],{pane:'endpoints',radius:4,weight:1,color:'#fff',fillColor:c,fillOpacity:1,interactive:false}).addTo(endLayer);
  if(el('arrows').checked){const p=map.latLngToLayerPoint(coords[14]),q=map.latLngToLayerPoint(coords[16]),angle=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
- new Vietflex.Marker(coords[15],{pane:'endpoints',interactive:false,icon:new Vietflex.DivIcon({className:'routeArrow',html:'<span style="--c:'+c+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(endLayer)}
+ L.marker(coords[15],{pane:'endpoints',interactive:false,icon:L.divIcon({className:'routeArrow',html:'<span style="--c:'+c+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(endLayer)}
  }}
  for(const n of ns){const chosen=n[0]===state.selected,showLabel=el('labels').checked&&(zoom>=5||chosen);const label=n[1].split(' ·')[0];
  const content='<div class="node '+(chosen?'selected':'')+'" style="--c:'+colors[n[6]]+'"><span class="symbol">'+n[2]+'</span>'+(showLabel?'<small>'+label+'</small>':'')+'</div>';
- const width=showLabel?136:40,icon=new Vietflex.DivIcon({className:'pointIcon',html:content,iconSize:[width,32],iconAnchor:[width/2,16]});
- const marker=new Vietflex.Marker([n[3],n[4]],{pane:'symbols',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(pointLayer);marker.on('click',()=>selectNode(n[0]));marker.bindTooltip(n[1]);nodeMarkers.set(n[0],marker);
+ const width=showLabel?136:40,icon=L.divIcon({className:'pointIcon',html:content,iconSize:[width,32],iconAnchor:[width/2,16]});
+ const marker=L.marker([n[3],n[4]],{pane:'symbols',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(pointLayer);marker.on('click',()=>selectNode(n[0]));marker.bindTooltip(n[1]);nodeMarkers.set(n[0],marker);
  }
  el('when').textContent=fmt(state.year);el('year').value=state.year;
  el('stats').textContent=ns.length+'/'+raw.length+' điểm · '+es.length+' tuyến';
@@ -154,7 +171,7 @@ function render(){
  const x=(state.year+1300)/3326*100;el('cursor').style.left=x+'%';
  el('status').dataset.rendered='yes';
 }
-function fit(){const ns=nodes();if(ns.length===1)map.setView([ns[0][3],ns[0][4]],6);else if(ns.length)map.fitBounds(new Vietflex.LatLngBounds(ns.map(n=>[n[3],n[4]])).pad(.14),{maxZoom:6,animate:false})}
+function fit(){const ns=nodes();if(ns.length===1)map.setView([ns[0][3],ns[0][4]],6);else if(ns.length)map.fitBounds(L.latLngBounds(ns.map(n=>[n[3],n[4]])).pad(.14),{maxZoom:6,animate:false})}
 function setMode(mode){pause();state.mode=mode;render();fit()}
 function pause(){if(state.timer)clearInterval(state.timer);state.timer=null;state.playing=false;el('play').textContent='▶'}
 function changeYear(y){state.year=Math.max(-1300,Math.min(2026,+y));render()}
