@@ -1,14 +1,68 @@
-<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MapScript · Vietflex — Atlas chữ viết Đông Á | Long Ngo</title><meta name="description" content="WebGIS tương tác tiến hóa chữ viết Đông Á: Giáp cốt văn, Hán, Nôm, Kanji, Hanja, Hangul, Kana và các nhánh chữ viết. Long Ngo · MIT 2026."><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Vietflexmap/VN@6144d565fcf236727577ab3c4471bbe49f86892f/dist/vietflex.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><style>*{box-sizing:border-box}html,body{height:100%;margin:0;font:14px system-ui;background:#101c30;color:#f1f5f9}header{padding:11px 16px;background:#101b2c;border-bottom:1px solid #35506b}h1{font-size:18px;margin:0}main{height:calc(100% - 57px);display:grid;grid-template-columns:295px 1fr 270px}aside{overflow:auto;padding:12px;background:#14233a}#map{height:100%;width:100%}h2{font-size:15px;color:#7be2e3}.row{display:flex;align-items:center}.row button{background:none;border:0;color:#def5ff;cursor:pointer;padding:6px}.row button:first-child{width:28px}button:hover{color:#74e7e4}.sub{margin-left:14px;border-left:1px dashed #668}.leaflet-div-icon{background:none;border:0}.pin{border:2px solid #70def2;background:#152940;border-radius:100%;width:31px;height:31px;text-align:center;padding-top:3px;font-size:18px}#timeline{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:800;background:#15273feF;border:1px solid #4a6680;border-radius:10px;padding:12px;width:min(580px,65vw)}input[type=range]{width:100%}input[type=search],select{width:100%;padding:9px;background:#20364f;color:white;border:1px solid #61748a;border-radius:6px;margin-bottom:8px}#detail{line-height:1.6}.btn{background:#223b52;color:white;border:1px solid #506880;padding:6px;border-radius:6px}@media(max-width:850px){main{grid-template-columns:230px 1fr}aside:last-child{display:none}}@media(max-width:570px){main{display:block}aside:first-child{position:absolute;z-index:700;width:230px;max-height:55vh}#map{height:100%}#timeline{width:94vw}}header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;min-height:68px}.author{color:#a9bfd3;font-size:12px}.author a{color:#7be2e3}#toggleTree{display:none;margin-left:8px}main{height:calc(100% - 68px)}.leaflet-control-attribution{font-size:10px!important}.leaflet-control-container{z-index:450}@media(max-width:570px){header{padding:9px 12px;min-height:86px}header h1{font-size:15px}.author{font-size:11px}main{height:calc(100% - 86px)}#toggleTree{display:inline-block}aside#treePanel{transform:translateX(-110%);transition:transform .25s ease;top:86px;bottom:0;max-height:none;width:min(300px,85vw);box-shadow:5px 0 20px #071320aa}aside#treePanel.mobile-open{transform:translateX(0)}#timeline{bottom:14px;left:50%;width:94vw}}@media(min-width:571px){#toggleTree{display:none}} .script-icon{background:transparent;border:0}.script-pin{display:flex;gap:4px;align-items:center;justify-content:center;min-width:102px;height:39px;padding:3px 6px;background:#10223df2;border:2px solid var(--node-color);border-radius:22px;color:#fff;font-size:17px;box-shadow:0 3px 8px #0008;white-space:nowrap}.script-pin small{font-size:10px;line-height:1.05;font-weight:650;max-width:72px;overflow:hidden;text-overflow:ellipsis}.script-pin.active{border-color:#fff;box-shadow:0 0 0 3px var(--node-color),0 4px 15px #000c}#map{background:#bcdce0}#timeline{box-shadow:0 4px 16px #09182b77}@media(max-width:1100px){main{grid-template-columns:245px 1fr 220px}}@media(max-width:850px){main{grid-template-columns:210px 1fr}aside:last-child{display:none}} .control-box{background:#1b3048;border:1px solid #3e5972;border-radius:10px;padding:10px;margin:12px 0;display:grid;gap:8px}.control-box strong{font-size:12px;color:#8de1e8}.control-box label{font-size:12px;display:flex;gap:8px;align-items:center}.control-box input[type=checkbox]{accent-color:#29bdca}.control-box select{margin:0}.script-pin.compact{min-width:36px;width:36px;height:36px;border-radius:50%;padding:2px}.arrow-icon{border:0;background:transparent}.control-box button{margin-top:4px}#sceneStats{color:#95b9c9;font-size:12px}@media(max-width:850px){#treePanel{font-size:12px}} .atlas-pin{box-sizing:border-box;background:#0f263dea;color:#fff;border:2px solid var(--node);border-radius:24px;min-height:36px;display:flex;align-items:center;gap:4px;justify-content:center;padding:2px 6px;box-shadow:0 2px 9px #0e1723a0;font-size:18px;white-space:nowrap}.atlas-pin small{font-size:11px;font-weight:700;max-width:78px;overflow:hidden;text-overflow:ellipsis}.atlas-pin.chosen{border-color:white;outline:3px solid var(--node)}.script-icon,.route-arrow{background:none;border:0}.route-arrow span{display:block;font-size:23px;line-height:23px;color:var(--edge);text-shadow:0 1px 2px #222}.cluster-choice,.tree-result{display:block;padding:7px 10px;width:100%;text-align:left;background:#203b54;color:white;border:1px solid #4a6783;border-radius:6px;cursor:pointer;margin:3px 0}.tree-selected{color:#fbbf24!important}.control-box{max-height:310px;overflow:auto}#map{min-height:300px}
-#timeline{max-width:calc(100% - 32px);backdrop-filter:blur(8px)}
-@media(max-width:570px){
- main{height:calc(100dvh - 86px);position:relative}
- main>div{height:100%;min-height:0}
- #map{height:100%;min-height:0}
- #timeline{bottom:12px;width:calc(100vw - 24px);max-width:none}
- #treePanel{z-index:1001}
-}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style><header><h1>甲骨文 · MapScript — Atlas tiến hóa chữ viết Á Đông</h1><div class="author">Thiết kế: <strong>Long Ngo</strong> · Giấy phép <a href="https://github.com/xulytiengviet/mapscript/blob/main/LICENSE" target="_blank" rel="noopener">MIT © 2026</a> <button class="btn" id="toggleTree" aria-label="Ẩn hoặc hiện sơ đồ cây">☰ Sơ đồ</button></div></header><main><aside id="treePanel"><h2>▶ Sơ đồ chi tiết</h2><input id="find" type="search" placeholder="Tìm chữ viết..."><select id="group"><option value="all">Tất cả</option><option value="han">Hán tự</option><option value="brahmi">Brahmi</option><option value="sogdian">Sogdian</option><option value="latin">Latin</option></select><div class="control-box"><strong>Chế độ hiển thị</strong><select id="viewMode"><option value="all" selected>Toàn bộ hệ chữ</option><option value="history">Tiến trình lịch sử</option><option value="branch">Một nhánh nguồn → đích</option></select><strong>Họ chữ viết</strong><div id="familyToggles"><label><input type="checkbox" data-family="han" checked> Hán tự</label><label><input type="checkbox" data-family="brahmi" checked> Brahmi</label><label><input type="checkbox" data-family="sogdian" checked> Sogdian</label><label><input type="checkbox" data-family="latin" checked> Latin</label></div><label><input id="showArrows" type="checkbox" checked> Mũi tên hướng tiến hóa</label><label><input id="showLabels" type="checkbox" checked> Nhãn điểm</label><button id="fitVisible" class="btn">◎ Vừa khung nhìn</button></div><div id="tree"></div><button id="export" class="btn">⇩ Xuất GeoJSON</button><p style="font-size:12px;color:#abc">Đường đứt: ảnh hưởng văn hóa, không phải hệ chữ hậu duệ.</p></aside><div style="position:relative"><div id="map"></div><div id="timeline"><span id="when">2026 SCN</span> <span id="sceneStats" aria-live="polite"></span> <button id="play" class="btn">▶ Chạy</button><input type="range" id="year" min="-1300" max="2026" value="2026"><small>1300 TCN — 2026 SCN</small></div></div><aside><h2>Hồ sơ chữ viết</h2><div id="detail">Chọn một chữ viết hoặc tuyến.</div><hr><small>Vị trí và niên đại mang tính đại diện. Tuyến mô tả mối liên hệ chữ viết, không phải đường di cư. Quốc kỳ biểu thị quốc gia ngày nay.</small></aside></main><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdn.jsdelivr.net/gh/Vietflexmap/VN@6144d565fcf236727577ab3c4471bbe49f86892f/dist/vietflex.js"></script><script>
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MapScript · Atlas tiến hóa chữ viết | Long Ngo</title>
+<meta name="description" content="Atlas tương tác về lịch sử và các quan hệ chữ viết Á Đông, Long Ngo, MIT 2026">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<style>:root{--ink:#1b2a3b;--muted:#66788b;--line:#dbe4eb;--sea:#eaf3f7;--accent:#087f91}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#f5f8fb}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #31abca;outline-offset:2px}
+header{height:58px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;background:#fff;border-bottom:1px solid var(--line)}
+.brand{font-size:18px;font-weight:750;white-space:nowrap}.brand span{color:#148da3}.tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+button,.chip{border:1px solid #d4e0e8;background:#fff;color:#22354b;border-radius:21px;padding:7px 12px}
+button:hover{background:#eaf5f8}.active{background:#d7f0f3!important;border-color:#5bb9c4!important}
+#layout{height:calc(100dvh - 58px);display:grid;grid-template-rows:minmax(250px,1fr) 226px;min-height:0}
+#top{display:grid;grid-template-columns:minmax(0,1fr) 304px;min-height:0;overflow:hidden}
+#mapWrap{position:relative;min-height:0;background:#d8e9ed}#map{position:absolute;inset:0;height:100%;width:100%;z-index:0}
+#mapHeader{position:absolute;top:12px;left:12px;z-index:650;display:flex;gap:6px;align-items:center;background:#fffffff2;padding:9px 12px;border:1px solid #d4e0e8;border-radius:11px;box-shadow:0 3px 16px #304d5a24}
+#mapHeader strong{font-size:17px}#mapHeader small{color:var(--muted)}
+#mapTools{position:absolute;top:12px;right:12px;z-index:650;display:flex;flex-direction:column;gap:7px}#mapTools button{border-radius:9px;font-size:18px;padding:7px 10px;background:#fffffff2}
+#legend{position:absolute;bottom:12px;left:12px;z-index:650;background:#fffffff0;border:1px solid #dae5eb;border-radius:9px;padding:8px 10px;font-size:12px;max-width:74%;box-shadow:0 3px 15px #0001}
+#legend .dot{display:inline-block;width:10px;height:10px;border-radius:100%;margin-left:10px;margin-right:3px}#legend .dot:first-child{margin-left:0}
+#info{overflow:auto;background:#fff;border-left:1px solid var(--line);padding:15px 16px}
+#info h2{font-size:19px;margin:3px 0 12px}#info h3{font-size:15px;margin:14px 0 7px}
+#info p{margin:9px 0}#info .muted,.muted{color:var(--muted)}#info .lead{color:#087f91;font-weight:700}
+#search{width:100%;border:1px solid #c9d9e1;padding:10px;border-radius:9px;margin:8px 0}
+#results{max-height:180px;overflow:auto}#results button{display:block;text-align:left;width:100%;margin:3px 0;border-radius:7px}
+#details{border-top:1px solid var(--line);margin-top:14px;padding-top:8px}
+#bottom{display:grid;grid-template-rows:49px 29px minmax(0,1fr);min-height:0;border-top:1px solid #cbd8df;background:#f8fafc}
+#timelineHead{display:flex;align-items:center;gap:12px;padding:7px 12px;background:white;border-bottom:1px solid var(--line)}
+#year{flex:1;min-width:60px;accent-color:#048da3}#when{min-width:100px;font-weight:700;font-variant-numeric:tabular-nums}#stats{color:var(--muted);white-space:nowrap}
+#bands{display:grid;grid-template-columns:100px 1fr;overflow:hidden;border-bottom:1px solid var(--line)}
+#bands span{padding:5px 10px;background:#eaf0f3;font-size:12px;font-weight:650}#bandsTrack{display:flex;position:relative;align-items:center;gap:3px}
+.band{height:14px;opacity:.8;border-radius:4px;min-width:7px;flex:1}
+#events{position:relative;overflow-x:auto;overflow-y:auto;background:repeating-linear-gradient(90deg,transparent 0,transparent 99px,#dee8ee 100px)}
+#eventTrack{position:relative;height:124px;min-width:900px}
+.event{position:absolute;top:0;transform:translateX(-50%);padding:4px 5px;min-width:10px;max-width:130px;border:0;border-radius:6px;background:transparent;color:#32465b;font-size:11px;line-height:1.2;text-align:center}
+.event:before{content:"";display:block;margin:1px auto 5px;background:var(--c);width:10px;height:10px;border:2px solid #fff;box-shadow:0 0 0 1px var(--c);border-radius:100%}
+.event:hover,.event.active{background:#dceff4!important}
+#cursor{position:absolute;top:0;bottom:0;width:2px;background:#10849a;z-index:2;pointer-events:none}
+#cursor:before{content:"";position:absolute;top:0;left:-5px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #10849a}
+#status{font-size:11px;color:var(--muted)}.pointIcon{border:0;background:transparent}
+.node{background:white;border:2px solid var(--c);border-radius:18px;padding:3px 6px;box-shadow:0 2px 8px #0004;white-space:nowrap;display:flex;align-items:center;gap:4px;width:max-content;max-width:154px;font-weight:650}
+.node.selected{box-shadow:0 0 0 4px #ecbd37,0 2px 8px #0004}.node .symbol{font-size:17px}.node small{font-size:11px;overflow:hidden;text-overflow:ellipsis;max-width:105px}
+.routeArrow{border:0;background:transparent}.routeArrow span{font-size:19px;color:var(--c);text-shadow:0 1px 3px white;display:block}
+@media(max-width:900px){#top{grid-template-columns:minmax(0,1fr) 245px}.tools .optional{display:none}}
+@media(max-width:650px){header{padding:0 8px}.brand{font-size:14px}#layout{grid-template-rows:minmax(280px,1fr) 240px}#top{grid-template-columns:minmax(0,1fr)}#info{display:none}#info.open{display:block;position:absolute;top:58px;right:0;width:min(90vw,330px);height:calc(100dvh - 58px);z-index:1000;box-shadow:-5px 0 25px #0003}#mapHeader{max-width:75%;padding:7px}#mapHeader strong{font-size:14px}#mapHeader small{display:none}#stats{font-size:10px}#timelineHead{gap:6px;padding:5px}.tools{gap:4px}.tools button{padding:6px}#legend{font-size:10px}#eventTrack{min-width:1300px}}
+</style></head><body>
+<header><div class="brand">🌐 <span>MapScript</span> · Atlas tiến hóa chữ viết</div>
+<nav class="tools" aria-label="Bộ điều khiển"><button id="allMode" class="active">Toàn bộ</button><button id="historyMode">Lịch sử</button><button id="branchMode">Một nhánh</button><button id="fit" class="optional">⌖ Vừa khung</button><button id="export" class="optional">↓ GeoJSON</button><button id="toggleInfo">☰ Hồ sơ</button></nav></header>
+<div id="layout"><section id="top"><div id="mapWrap"><div id="map" role="application" aria-label="Bản đồ lịch sử chữ viết"></div>
+<div id="mapHeader"><strong id="mapYear">Atlas chữ viết</strong><small id="mapSub">Điểm khởi nguồn và mối quan hệ</small></div>
+<div id="mapTools"><button id="zoomIn" aria-label="Phóng to">＋</button><button id="zoomOut" aria-label="Thu nhỏ">−</button><button id="reset" aria-label="Đặt lại bản đồ">⌖</button></div>
+<div id="legend"><span class="dot" style="background:#e76c46"></span>Hán tự <span class="dot" style="background:#8263d9"></span>Brahmi <span class="dot" style="background:#c94b9d"></span>Sogdian <span class="dot" style="background:#1784be"></span>Latin<br><span id="status">Đang tải dữ liệu...</span></div></div>
+<aside id="info"><h2>Hồ sơ chữ viết</h2><div class="muted">Chọn điểm trên bản đồ hoặc một sự kiện trên dòng thời gian.</div>
+<input type="search" id="search" placeholder="Tìm chữ viết, ví dụ: Chữ Nôm..." aria-label="Tìm chữ viết"><div id="results"></div>
+<div id="details"></div><h3>Lớp hiển thị</h3>
+<label><input type="checkbox" id="labels" checked> Hiện nhãn chữ viết</label><br>
+<label><input type="checkbox" id="arrows" checked> Hiện mũi tên tiến hóa</label><br>
+<label><input type="checkbox" id="lines" checked> Hiện đường quan hệ</label><br>
+<p class="muted"><small>Vị trí và mốc niên đại có tính đại diện. Đường nối mô tả quan hệ chữ viết, không phải tuyến di cư. Bản đồ nền hiện đại không biểu thị biên giới lịch sử.</small></p>
+<p class="muted"><small>Thiết kế: Long Ngo · <a href="https://github.com/xulytiengviet/mapscript/blob/main/LICENSE">MIT © 2026</a></small></p></aside></section>
+<section id="bottom"><div id="timelineHead"><button id="play" aria-label="Chạy timeline">▶</button><span id="when">2026 SCN</span><input id="year" type="range" min="-1300" max="2026" step="1" value="2026" aria-label="Năm lịch sử"><span id="stats"></span><button id="now">Hiện tại</button></div>
+<div id="bands"><span>Họ chữ viết</span><div id="bandsTrack"><div class="band" style="background:#e76c46" title="Hán tự"></div><div class="band" style="background:#8263d9" title="Brahmi"></div><div class="band" style="background:#c94b9d" title="Sogdian"></div><div class="band" style="background:#1784be" title="Latin"></div></div></div>
+<div id="events"><div id="eventTrack"><div id="cursor"></div></div></div></section></div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
 const raw=[
 ['oracle','Giáp cốt văn · 甲骨文','🇨🇳',36.1,114.3,-1250,'han','','Khắc trên xương và mai rùa cuối thời Thương','gốc'],
 ['bronze','Kim văn','🇨🇳',34.3,109,-1100,'han','oracle','Văn tự trên đồ đồng thời Chu','kế thừa'],
@@ -49,149 +103,67 @@ const raw=[
 ['manchu','Chữ Mãn','🇨🇳',41.8,123.4,1599,'sogdian','mongolian','Phát triển từ Mông Cổ truyền thống','kế thừa'],
 ['latin','Chữ Latin','🌍',41.9,12.5,-600,'latin','','Nguồn gốc Địa Trung Hải, độc lập với chữ Hán','gốc'],
 ['quocngu','Chữ Quốc ngữ','🇻🇳',16.05,108.2,1651,'latin','latin','Hệ chính tả Latin phát triển bởi nhiều người; năm 1651 là mốc từ điển de Rhodes','tiếp nhận']
-]; 
+];
 const dict=Object.fromEntries(raw.map(n=>[n[0],n]));
-const colors={han:'#ea6545',brahmi:'#8b5cf6',sogdian:'#d946a9',latin:'#0284c7'};
-const el=id=>document.getElementById(id);
-const fmt=y=>y<0?Math.abs(y)+' TCN':y+' SCN';
-const map=Vietflex.vietflexMap('map',{useLegacyGoogleTiles:true,googleMapType:'roadmap',zoomControl:false,attributionControl:false});
-map.setView([31,106],4);new Vietflex.ZoomControl({position:'topleft'}).addTo(map);new Vietflex.AttributionControl({position:'bottomright'}).addTo(map);
-map.createPane('scriptLines');map.getPane('scriptLines').style.zIndex='410';
-map.createPane('scriptEndpoints');map.getPane('scriptEndpoints').style.zIndex='420';
-map.createPane('scriptMarkers');map.getPane('scriptMarkers').style.zIndex='630';
-const linesLayer=L.layerGroup().addTo(map), endpointLayer=L.layerGroup().addTo(map), markerLayer=L.layerGroup().addTo(map);
-const expanded=new Set(['oracle','brahmi','sogdian','latin']);
-let selected='nom',timer=null;
-const E=raw.filter(n=>n[7] && dict[n[7]]);
-const allGroups=['oracle','brahmi','sogdian','latin'];
-const branchCache=new Map();
-function ancestors(id){if(branchCache.has(id))return branchCache.get(id);const ids=new Set();let n=dict[id],guard=0;while(n&&guard++<=raw.length&&!ids.has(n[0])){ids.add(n[0]);n=dict[n[7]]}branchCache.set(id,ids);return ids}
-function enabledFamily(n){const cb=document.querySelector('#familyToggles input[data-family="'+n[6]+'"]');return !cb||cb.checked}
-function matchingSearch(n){const q=el('find').value.trim().toLocaleLowerCase();return !q||n[1].toLocaleLowerCase().includes(q)}
-function getNodes(){
- const mode=el('viewMode').value,year=+el('year').value,group=el('group').value,ids=ancestors(selected),search=el('find').value.trim();
- return raw.filter(n=>{
-  if(!enabledFamily(n)||(group!=='all'&&n[6]!==group))return false;
-  if(mode==='history'&&n[5]>year)return false;
-  if(mode==='branch'&&!ids.has(n[0]))return false;
-  if(search&&!matchingSearch(n))return false;
-  return true
- });
+const colors={han:'#e76c46',brahmi:'#8263d9',sogdian:'#c94b9d',latin:'#1784be'};
+const el=id=>document.getElementById(id),fmt=y=>y<0?Math.abs(y)+' TCN':y+' SCN';
+const edges=raw.filter(n=>n[7]&&dict[n[7]]);
+const state={mode:'all',year:2026,selected:'nom',playing:false,timer:null};
+const map=L.map('map',{zoomControl:false,attributionControl:true,preferCanvas:false,worldCopyJump:false}).setView([29,105],4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);
+map.createPane('routes');map.getPane('routes').style.zIndex='430';map.getPane('routes').style.pointerEvents='none';
+map.createPane('endpoints');map.getPane('endpoints').style.zIndex='440';map.getPane('endpoints').style.pointerEvents='none';
+map.createPane('symbols');map.getPane('symbols').style.zIndex='630';
+const lineLayer=L.layerGroup().addTo(map),endLayer=L.layerGroup().addTo(map),pointLayer=L.layerGroup().addTo(map);
+const nodeMarkers=new Map();
+function ancestors(id){let out=new Set(),p=dict[id];while(p&&!out.has(p[0])){out.add(p[0]);p=dict[p[7]]}return out}
+function visible(n){return state.mode==='all'||(state.mode==='history'?n[5]<=state.year:ancestors(state.selected).has(n[0]))}
+function nodes(){return raw.filter(visible)}
+function relations(ns){const ids=new Set(ns.map(n=>n[0]));return edges.filter(n=>ids.has(n[0])&&ids.has(n[7]))}
+function geometry(a,b){let pts=[],dx=b[4]-a[4],dy=b[3]-a[3],curve=Math.min(.13,5/(Math.abs(dx)+Math.abs(dy)+1));for(let i=0;i<=30;i++){let t=i/30,v=2*t*(1-t)*curve;pts.push([a[3]+dy*t-dx*v,a[4]+dx*t+dy*v])}return pts}
+function showDetail(id){const n=dict[id];if(!n)return;const d=el('details');d.replaceChildren();const h=document.createElement('h2');h.className='lead';h.textContent=n[2]+' '+n[1];d.append(h);
+for(const [k,v] of [['Niên đại',fmt(n[5])],['Họ chữ',({han:'Hán tự',brahmi:'Brahmi',sogdian:'Sogdian',latin:'Latin'})[n[6]]],['Quan hệ',n[9]],['Nguồn liên hệ',n[7]?dict[n[7]][1]:'Gốc độc lập'],['Bối cảnh',n[8]]]){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=k+': ';p.append(strong,document.createTextNode(v));d.append(p)}
 }
-function getEdges(nodes){
- const ids=new Set(nodes.map(n=>n[0]));
- return E.filter(n=>ids.has(n[0])&&ids.has(n[7])&& (el('viewMode').value!=='history'||Math.max(n[5],dict[n[7]][5])<=+el('year').value))
-}
-function arc(a,b){
- const out=[],x=b[4]-a[4],y=b[3]-a[3],k=Math.min(.16,8/(Math.abs(x)+Math.abs(y)+1));
- for(let i=0;i<=32;i++){const t=i/32,c=2*t*(1-t)*k;out.push([a[3]+y*t-x*c,a[4]+x*t+y*c])}return out
-}
-function displayNode(n){
- const h=document.createElement('h2');h.textContent=n[2]+' '+n[1];
- el('detail').replaceChildren(h);
- for(const [k,v] of [['Niên đại',fmt(n[5])],['Quan hệ',n[9]],['Nguồn',n[7]?dict[n[7]][1]:'Nguồn độc lập'],['Bối cảnh',n[8]]]){
-  const p=document.createElement('p'),b=document.createElement('strong');b.textContent=k+': ';p.append(b,document.createTextNode(v));el('detail').append(p)
+function selectNode(id,fly=true){let n=dict[id];if(!n)return;state.selected=id;if(state.mode==='history'&&n[5]>state.year){state.year=n[5];el('year').value=state.year}showDetail(id);render();if(fly)map.flyTo([n[3],n[4]],Math.max(5,map.getZoom()),{duration:.4});if(innerWidth<=650)el('info').classList.add('open')}
+function render(){
+ const ns=nodes(),es=relations(ns);
+ pointLayer.clearLayers();lineLayer.clearLayers();endLayer.clearLayers();nodeMarkers.clear();
+ const zoom=map.getZoom(),chain=ancestors(state.selected);
+ for(const n of es){const a=dict[n[7]],coords=geometry(a,n),active=chain.has(n[0])&&chain.has(a[0]),c=colors[n[6]];
+ if(el('lines').checked){const route=L.polyline(coords,{pane:'routes',color:c,opacity:active?.94:.65,weight:active?4:2.4,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'5 7':null,interactive:false}).addTo(lineLayer);
+ for(const p of [a,n])L.circleMarker([p[3],p[4]],{pane:'endpoints',radius:4,weight:1,color:'#fff',fillColor:c,fillOpacity:1,interactive:false}).addTo(endLayer);
+ if(el('arrows').checked){const p=map.latLngToLayerPoint(coords[14]),q=map.latLngToLayerPoint(coords[16]),angle=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
+ L.marker(coords[15],{pane:'endpoints',interactive:false,icon:L.divIcon({className:'routeArrow',html:'<span style="--c:'+c+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(endLayer)}
+ }}
+ for(const n of ns){const chosen=n[0]===state.selected,showLabel=el('labels').checked&&(zoom>=5||chosen);const label=n[1].split(' ·')[0];
+ const content='<div class="node '+(chosen?'selected':'')+'" style="--c:'+colors[n[6]]+'"><span class="symbol">'+n[2]+'</span>'+(showLabel?'<small>'+label+'</small>':'')+'</div>';
+ const width=showLabel?136:40,icon=L.divIcon({className:'pointIcon',html:content,iconSize:[width,32],iconAnchor:[width/2,16]});
+ const marker=L.marker([n[3],n[4]],{pane:'symbols',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(pointLayer);marker.on('click',()=>selectNode(n[0]));marker.bindTooltip(n[1]);nodeMarkers.set(n[0],marker);
  }
+ el('when').textContent=fmt(state.year);el('year').value=state.year;
+ el('stats').textContent=ns.length+'/'+raw.length+' điểm · '+es.length+' tuyến';
+ el('status').textContent=ns.length+' điểm địa lý · '+es.length+' mối liên hệ · '+(state.mode==='all'?'Toàn bộ':state.mode==='history'?'Tới '+fmt(state.year):'Nhánh đã chọn');
+ el('mapYear').textContent=state.mode==='history'?fmt(state.year):'Atlas chữ viết';
+ el('mapSub').textContent=state.mode==='branch'?'Phả hệ: '+dict[state.selected][1]:state.mode==='history'?'Lược đồ tới thời điểm đã chọn':'Các nhánh nguồn gốc chữ viết';
+ for(const id of ['allMode','historyMode','branchMode'])el(id).classList.toggle('active',id==={all:'allMode',history:'historyMode',branch:'branchMode'}[state.mode]);
+ const x=(state.year+1300)/3326*100;el('cursor').style.left=x+'%';
+ el('status').dataset.rendered='yes';
 }
-function choose(id,zoom=true){
- const n=dict[id];if(!n)return;
- if(el('viewMode').value==='history'&&n[5]>+el('year').value){el('year').value=n[5];el('when').textContent=fmt(n[5])}
- const cb=document.querySelector('#familyToggles input[data-family="'+n[6]+'"]');if(cb)cb.checked=true;
- if(el('group').value!=='all'&&el('group').value!==n[6])el('group').value='all';
- if(!matchingSearch(n))el('find').value='';
- selected=id;displayNode(n);drawTree();draw();if(zoom)focus(id);
- if(window.innerWidth<=570)el('treePanel').classList.remove('mobile-open');
-}
-function focus(id){
- const chain=el('viewMode').value==='branch'?[...ancestors(id)].map(x=>dict[x]):[dict[id],dict[dict[id][7]]].filter(Boolean);
- if(chain.length>1){map.fitBounds(L.latLngBounds(chain.map(n=>[n[3],n[4]])).pad(.25),{animate:true,maxZoom:7})}
- else map.flyTo([dict[id][3],dict[id][4]],6)
-}
-function lineIcon(color,angle){
- return L.divIcon({className:'route-arrow',html:'<span style="--edge:'+color+';transform:rotate('+angle+'deg)">➤</span>',iconSize:[23,23],iconAnchor:[11,11]})
-}
-function draw(){
- markerLayer.clearLayers();linesLayer.clearLayers();endpointLayer.clearLayers();
- const nodes=getNodes(),edges=getEdges(nodes);
- el('sceneStats').textContent=' · '+nodes.length+'/'+raw.length+' điểm · '+edges.length+' tuyến';
- // Actual geographic geometry remains anchored to the node, even when badges collide.
- for(const n of edges){
-  const parent=dict[n[7]],pts=arc(parent,n),c=colors[n[6]],active=ancestors(selected).has(n[0])&&ancestors(selected).has(n[7]);
-  const line=L.polyline(pts,{pane:'scriptLines',color:c,weight:active?4.3:2.8,opacity:active?.98:.73,dashArray:['ảnh hưởng','liên hệ'].includes(n[9])?'6 6':null}).addTo(linesLayer);
-  line.bindTooltip(parent[1]+' → '+n[1]+' · '+n[9],{sticky:true});
-  line.on('click',()=>choose(n[0]));
-  for(const [p,destination] of [[parent,false],[n,true]]){
-   L.circleMarker([p[3],p[4]],{pane:'scriptEndpoints',radius:destination?5:4,color:'#fff',weight:1.5,fillColor:c,fillOpacity:1,interactive:false}).addTo(endpointLayer);
-  }
-  if(el('showArrows').checked){
-    const a=map.latLngToLayerPoint(pts[15]),b=map.latLngToLayerPoint(pts[17]);
-    const angle=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;
-    L.marker(pts[16],{pane:'scriptEndpoints',interactive:false,icon:lineIcon(c,angle)}).addTo(endpointLayer)
-  }
- }
- // Preserve real geographical coordinates: each node has its own marker.
- const z=map.getZoom();
- for(const n of nodes){
-  const chosen=n[0]===selected,label=el('showLabels').checked&&(z>=6||chosen);
-  const caption=n[1].replace(/ ·.*/,'').slice(0,17),w=label?112:38;
-  const html='<span class="atlas-pin '+(chosen?'chosen':'')+'" style="--node:'+colors[n[6]]+'"><span>'+n[2]+'</span>'+(label?'<small>'+caption+'</small>':'')+'</span>';
-  const icon=L.divIcon({className:'script-icon',html,iconSize:[w,40],iconAnchor:[w/2,20]});
-  const marker=L.marker([n[3],n[4]],{pane:'scriptMarkers',icon,zIndexOffset:chosen?1000:0,riseOnHover:true}).addTo(markerLayer);
-  marker.bindTooltip(n[1]+' · '+fmt(n[5]),{direction:'top'});
-  marker.on('click',()=>choose(n[0]));
- }
-
- if(nodes.some(n=>n[0]===selected)){
-  const n=dict[selected];L.circleMarker([n[3],n[4]],{pane:'scriptEndpoints',radius:13,color:'#ffffff',weight:3,fill:false,interactive:false}).addTo(endpointLayer)
- }
-}
-function showInTree(n){return enabledFamily(n)&&(el('group').value==='all'||el('group').value===n[6])}
-function buildBranch(n){
- const d=document.createElement('div'),r=document.createElement('div');r.className='row';
- const kids=raw.filter(x=>x[7]===n[0]&&showInTree(x));
- const t=document.createElement('button');t.textContent=kids.length?(expanded.has(n[0])?'▼':'▶'):'·';t.title='Mở/thu nhánh';
- t.onclick=()=>{expanded.has(n[0])?expanded.delete(n[0]):expanded.add(n[0]);drawTree()};
- const b=document.createElement('button');b.textContent=n[2]+' '+n[1];b.className=n[0]===selected?'tree-selected':'';b.onclick=()=>choose(n[0]);
- r.append(t,b);d.append(r);
- if(kids.length&&expanded.has(n[0])){const sub=document.createElement('div');sub.className='sub';for(const k of kids)sub.append(buildBranch(k));d.append(sub)}
- return d
-}
-function drawTree(){
- const box=el('tree');box.replaceChildren();
- const q=el('find').value.trim();
- if(q){for(const n of raw.filter(n=>showInTree(n)&&matchingSearch(n))){const b=document.createElement('button');b.textContent=n[2]+' '+n[1];b.className='tree-result';b.onclick=()=>choose(n[0]);box.append(b)}return}
- for(const id of allGroups){const root=dict[id];if(!showInTree(root))continue;const h=document.createElement('h2');h.textContent={han:'Hán tự và ảnh hưởng',brahmi:'Brahmi',sogdian:'Sogdian',latin:'Latin'}[root[6]];box.append(h,buildBranch(root))}
-}
-function refresh({fit=false}={}){el('when').textContent=fmt(+el('year').value);drawTree();draw();if(fit)requestAnimationFrame(()=>{map.invalidateSize();fitVisible()})}
-function fitVisible(){
- const nodes=getNodes();if(!nodes.length)return;
- if(nodes.length===1){map.setView([nodes[0][3],nodes[0][4]],Math.max(5,map.getZoom()));return}
- map.fitBounds(L.latLngBounds(nodes.map(n=>[n[3],n[4]])).pad(.18),{maxZoom:6,animate:false,padding:[24,24]});
-}
-el('year').oninput=()=>refresh();
-el('viewMode').onchange=()=>refresh({fit:true});
-el('group').onchange=()=>refresh({fit:true});
-el('find').oninput=()=>refresh({fit:true});
-for(const c of document.querySelectorAll('#familyToggles input'))c.onchange=()=>refresh({fit:true});
-el('showArrows').onchange=draw;
-el('showLabels').onchange=draw;
-el('fitVisible').onclick=fitVisible;
-map.on('zoomend',draw);
-el('toggleTree').onclick=()=>el('treePanel').classList.toggle('mobile-open');
-el('play').onclick=()=>{
- if(timer){clearInterval(timer);timer=null;el('play').textContent='▶ Chạy';return}
- el('viewMode').value='history';
- if(+el('year').value>=2026)el('year').value=-1300;
- refresh();el('play').textContent='Ⅱ Dừng';
- timer=setInterval(()=>{const v=Math.min(2026,+el('year').value+35);el('year').value=v;refresh();if(v===2026){clearInterval(timer);timer=null;el('play').textContent='▶ Chạy'}},140)
-};
-el('export').onclick=()=>{
- const nodes=getNodes(),edges=getEdges(nodes);
- const features=nodes.map(n=>({type:'Feature',geometry:{type:'Point',coordinates:[n[4],n[3]]},properties:{id:n[0],name:n[1],year:n[5],family:n[6],relation:n[9]}}));
- for(const n of edges)features.push({type:'Feature',geometry:{type:'LineString',coordinates:arc(dict[n[7]],n).map(p=>[p[1],p[0]])},properties:{from:n[7],to:n[0],relation:n[9],schematic:true}});
- const url=URL.createObjectURL(new Blob([JSON.stringify({type:'FeatureCollection',features})],{type:'application/geo+json'}));const a=document.createElement('a');a.href=url;a.download='mapscript.geojson';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000)
-};
-// historical annotations: a writing system may predate the notation standard shown;
-// links indicate intellectual relationships, not surveyed archaeological migration paths.
-displayNode(dict[selected]);refresh();setTimeout(()=>{map.invalidateSize();fitVisible()},320);
-</script></html>
+function fit(){const ns=nodes();if(ns.length===1)map.setView([ns[0][3],ns[0][4]],6);else if(ns.length)map.fitBounds(L.latLngBounds(ns.map(n=>[n[3],n[4]])).pad(.14),{maxZoom:6,animate:false})}
+function setMode(mode){pause();state.mode=mode;render();fit()}
+function pause(){if(state.timer)clearInterval(state.timer);state.timer=null;state.playing=false;el('play').textContent='▶'}
+function changeYear(y){state.year=Math.max(-1300,Math.min(2026,+y));render()}
+function play(){if(state.playing){pause();return}state.mode='history';if(state.year>=2026)state.year=-1300;state.playing=true;el('play').textContent='Ⅱ';render();fit();state.timer=setInterval(()=>{changeYear(Math.min(2026,state.year+20));if(state.year===2026)pause()},160)}
+function drawEvents(){const track=el('eventTrack');const sorted=[...raw].sort((a,b)=>a[5]-b[5]);sorted.forEach((n,i)=>{const b=document.createElement('button');b.type='button';b.className='event';b.style.left=((n[5]+1300)/3326*94+3)+'%';b.style.top=(i%4*28+6)+'px';b.style.setProperty('--c',colors[n[6]]);b.title=n[1]+' · '+fmt(n[5]);b.textContent=n[1].split(' ·')[0];b.onclick=()=>selectNode(n[0]);track.append(b)})}
+function search(){const q=el('search').value.trim().toLocaleLowerCase('vi'),r=el('results');r.replaceChildren();if(!q)return;for(const n of raw.filter(n=>n[1].toLocaleLowerCase('vi').includes(q)).slice(0,15)){const b=document.createElement('button');b.textContent=n[2]+' '+n[1]+' · '+fmt(n[5]);b.onclick=()=>{selectNode(n[0]);r.replaceChildren();el('search').value=''};r.append(b)}}
+function exportData(){const ns=nodes(),es=relations(ns),features=ns.map(n=>({type:'Feature',geometry:{type:'Point',coordinates:[n[4],n[3]]},properties:{id:n[0],name:n[1],year:n[5],family:n[6]}}));for(const n of es)features.push({type:'Feature',geometry:{type:'LineString',coordinates:geometry(dict[n[7]],n).map(p=>[p[1],p[0]])},properties:{from:n[7],to:n[0],relation:n[9],schematic:true}});const url=URL.createObjectURL(new Blob([JSON.stringify({type:'FeatureCollection',features})],{type:'application/geo+json'})),a=document.createElement('a');a.href=url;a.download='mapscript.geojson';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+el('allMode').onclick=()=>setMode('all');el('historyMode').onclick=()=>setMode('history');el('branchMode').onclick=()=>setMode('branch');
+el('fit').onclick=fit;el('reset').onclick=fit;el('zoomIn').onclick=()=>map.zoomIn();el('zoomOut').onclick=()=>map.zoomOut();
+el('toggleInfo').onclick=()=>el('info').classList.toggle('open');el('year').oninput=e=>{pause();state.mode='history';changeYear(e.target.value)};
+el('now').onclick=()=>{pause();state.year=2026;state.mode='all';render();fit()};
+el('play').onclick=play;el('search').oninput=search;el('export').onclick=exportData;
+for(const id of ['labels','arrows','lines'])el(id).onchange=render;
+map.on('zoomend',render);
+window.addEventListener('resize',()=>map.invalidateSize());
+drawEvents();showDetail(state.selected);render();requestAnimationFrame(()=>{map.invalidateSize();fit()});
+</script></body></html>
